@@ -22,7 +22,7 @@
 **Figure 1** shows the detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules.
 
 <p align="center">
-  <img src="Figures/YOLO26+FasterBlock+C2ICARE.png" alt="Complete YOLO26n architecture" width="800">
+  <img src="YOLO26+FasterBlock+C2ICARE.png" alt="Complete YOLO26n architecture" width="800">
   <br>
   <em>Figure 1. Detailed architecture of the proposed YOLO26n-based model.</em>
 </p>
@@ -30,7 +30,7 @@
 ### C2ICARE Module
 
 <p align="center">
-  <img src="Figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="600">
+  <img src="C2ICARE_module.png" alt="C2ICARE module internal architecture" width="600">
   <br>
   <em>Figure 2. Internal architecture of the proposed C2ICARE module.</em>
 </p>
@@ -42,7 +42,7 @@
 ### Data Augmentation
 
 <p align="center">
-  <img src="Figures/HSV_5x5_Hue_vs_Saturation.png" alt="HSV augmentation grid" width="600">
+  <img src="HSV_5x5_Hue_vs_Saturation.png" alt="HSV augmentation grid" width="600">
   <br>
   <em>Figure 3. HSV augmentation grid for hue shift versus saturation factor.</em>
 </p>
@@ -50,7 +50,7 @@
 ### Training Performance
 
 <p align="center">
-  <img src="Figures/mAP50_VS_Epoch.png" alt="mAP@0.5 progression over 50 epochs" width="700">
+  <img src="mAP50_VS_Epoch.png" alt="mAP@0.5 progression over 50 epochs" width="700">
   <br>
   <em>Figure 4. Mean Average Precision (mAP@0.5) performance progress over 50 epochs, averaged across three independent runs (random seeds 0, 1, and 2).</em>
 </p>
@@ -75,7 +75,7 @@
 ### Multi‑Objective Performance
 
 <p align="center">
-  <img src="Figures/Radar_Plot.png" alt="Radar chart of multi-objective performance" width="600">
+  <img src="Radar_Plot.png" alt="Radar chart of multi-objective performance" width="600">
   <br>
   <em>Figure 6. Radial performance comparison of YOLO architectures (M0–M9). The GFLOPs axis is inverted.</em>
 </p>
@@ -83,7 +83,7 @@
 ### XAI Analysis: EigenCAM Visualisation
 
 <p align="center">
-  <img src="Figures/EigenCAM_3columns_ST6_6-20180506204859914.jpg" alt="EigenCAM visualisation results" width="800">
+  <img src="EigenCAM_3columns_ST6_6-20180506204859914.jpg" alt="EigenCAM visualisation results" width="800">
   <br>
   <em>Figure 7. EigenCAM visualisation for the proposed M6 model on test images. Colour coding: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).</em>
 </p>
@@ -100,7 +100,7 @@
 - Ultralytics YOLOv8.0.117+
 
 
-- 
+
 ###Dataset Preparation
 
 📁 your_dataset/
