@@ -29,8 +29,6 @@
 
 ### C2ICARE Module
 
-<!-- Aquí pondrás la segunda figura solo del módulo C2ICARE -->
-
 <p align="center">
   <img src="figures/c2icare_module.png" alt="C2ICARE module internal architecture" width="600">
   <br>
@@ -110,10 +108,39 @@ To simulate the variability of underwater lighting conditions, HSV shifts were a
 - CUDA 11.8 (for GPU training)
 - PyTorch 1.10+
 - Ultralytics YOLOv8.0.117+
+###Dataset Preparation
+
+📁 your_dataset/
+├── 📁 images/
+│   ├── 📁 train/
+│   ├── 📁 val/
+│   └── 📁 test/
+├── 📁 labels/
+│   ├── 📁 train/
+│   ├── 📁 val/
+│   └── 📁 test/
+└── 📄 data.yaml
+
+###📄 License
+
+This project is licensed under the GNU Affero General Public License v3.0 - see the LICENSE file for details.
+This license requires that if you modify the code and provide a service over a network (e.g., a web API), you must make the complete source code available to users under the same license.
+
+###📚 Citation
+
+@article{SilvaAlvarado2026C2ICARE,
+  title={C2ICARE‑Optimized YOLO for Real‑Time Marine Species Detection via Multi‑Scale Convolutional Design},
+  author={Silva-Alvarado, Vinie Lee and Ahmad, Ali and Sendra, Sandra and Lloret, Jaime},
+  journal={[Journal Name]},
+  year={2026},
+  note={Under review}
+}
 
 ### Installation
 
 ```bash
 git clone https://github.com/VinieLee/C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design.git
 cd C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design
-pip install -r requirements.txt
+pip install -r requirements.txt```
+
+###Dataset Preparation
