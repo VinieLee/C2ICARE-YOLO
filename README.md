@@ -154,7 +154,7 @@ This license requires that if you modify the code and provide a service over a n
 
 ### 📚 Citation
 
-This work acknowledges the foundational contributions of the research community. We thank Zhou et al. for their CARE Transformer [zhou2025care], which inspired our C2ICARE module. We also thank Allken, Rosen, Handegard, and Malde for the Deep Vision Fish Dataset [AllkenRosen2020DeepVisionFishDataset] and their deep learning methods for fish identification [10.1093/icesjms/fsab227, https://doi.org/10.1002/gdj3.114]. If you find our work useful, please cite:
+This work acknowledges the foundational contributions of the research community. We thank Zhou et al. for their CARE Transformer [zhou2025care], which inspired our C2ICARE module. We also thank Allken et al. for the Deep Vision Fish Dataset [AllkenRosen2020DeepVisionFishDataset] and their deep learning methods for fish identification. If you find our work useful, please cite:
 
 ```bash
 @article{SilvaAlvarado2026C2ICARE,
