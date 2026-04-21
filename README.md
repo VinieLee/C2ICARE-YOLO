@@ -11,7 +11,7 @@
 ## 📢 Updates
 
 - `April 2026`: 🚀 Initial release of code and pretrained weights
-- `April 2026`: 📄 Paper available
+- `April 2026`: 📄 Paper under review
 
 ---
 
@@ -134,16 +134,6 @@ This section provides instructions to set up, train, validate, and run inference
 - CUDA 11.8 (for GPU training)
 - PyTorch 1.10+
 - Ultralytics YOLOv8.0.117+
-
-### Installation
-
-Clone the repository and install the required dependencies:
-
-```bash
-git clone https://github.com/VinieLee/C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design.git
-cd C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design
-pip install -r requirements.txt
-```
 
 ### Dataset Preparation
 ```
