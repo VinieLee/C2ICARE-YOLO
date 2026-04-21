@@ -30,7 +30,7 @@
 ### C2ICARE Module
 
 <p align="center">
-  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="600">
+  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="400">
   <br>
   <em>Figure 2. Internal architecture of the proposed C2ICARE module.</em>
 </p>
@@ -84,10 +84,30 @@
 
 ### XAI Analysis: EigenCAM Visualisation
 
+**Figure 7** shows EigenCAM visualisations for the proposed M6 model on test images from the underwater camera dataset. The colour coding for bounding boxes is as follows: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).
+
 <p align="center">
-  <img src="figures/EigenCAM_3columns_ST6_6-20180506204859914.jpg" alt="EigenCAM visualisation results" width="800">
+  <img src="figures/EigenCAM_3columns_ST1_135-20180503160446316.jpg" alt="EigenCAM ST1_135" width="800">
   <br>
-  <em>Figure 7. EigenCAM visualisation for the proposed M6 model (based on YOLO26n) on four test images from the underwater camera dataset. The colour coding for bounding boxes is as follows: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).</em>
+  <em>Figure 7a. EigenCAM visualisation for ST1_135-20180503160446316: 3 bluewhiting, 2 herring, 1 mesopelagic.</em>
+</p>
+
+<p align="center">
+  <img src="figures/EigenCAM_3columns_ST6_6-20180506204859914.jpg" alt="EigenCAM ST6_6" width="800">
+  <br>
+  <em>Figure 7b. EigenCAM visualisation for ST6_6-20180506204859914: 6 mackerel, 5 herring.</em>
+</p>
+
+<p align="center">
+  <img src="figures/EigenCAM_3columns_ST019-13-20170511204755726.jpg" alt="EigenCAM ST019-13" width="800">
+  <br>
+  <em>Figure 7c. EigenCAM visualisation for ST019-13-20170511204755726: 8 mackerel.</em>
+</p>
+
+<p align="center">
+  <img src="figures/EigenCAM_3columns_ST033-864-607-20170520203304451.jpg" alt="EigenCAM ST033-864" width="800">
+  <br>
+  <em>Figure 7d. EigenCAM visualisation for ST033-864-607-20170520203304451: 2 bluewhiting, 12 herring.</em>
 </p>
 
 ---
@@ -101,9 +121,16 @@
 - PyTorch 1.10+
 - Ultralytics YOLOv8.0.117+
 
+### Installation
+
+```bash
+git clone https://github.com/VinieLee/C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design.git
+cd C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design
+pip install -r requirements.txt
+```
 
 ###Dataset Preparation
-
+```
 📁 your_dataset/
 ├── 📁 images/
 │   ├── 📁 train/
@@ -114,14 +141,14 @@
 │   ├── 📁 val/
 │   └── 📁 test/
 └── 📄 data.yaml
-
+```
 ###📄 License
 
 This project is licensed under the GNU Affero General Public License v3.0 - see the LICENSE file for details.
 This license requires that if you modify the code and provide a service over a network (e.g., a web API), you must make the complete source code available to users under the same license.
 
 ###📚 Citation
-
+```bash
 @article{SilvaAlvarado2026C2ICARE,
   title={C2ICARE‑Optimized YOLO for Real‑Time Marine Species Detection via Multi‑Scale Convolutional Design},
   author={Silva-Alvarado, Vinie Lee and Ahmad, Ali and Sendra, Sandra and Lloret, Jaime},
@@ -129,21 +156,8 @@ This license requires that if you modify the code and provide a service over a n
   year={2026},
   note={Under review}
 }
-
-### Installation
-
-```bash
-git clone https://github.com/VinieLee/C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design.git
-cd C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design
-pip install -r requirements.txt```
-
-###Dataset Preparation
+```
 
 
-### Installation
 
-```bash
-git clone https://github.com/VinieLee/C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design.git
-cd C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design
-pip install -r requirements.txt
 
