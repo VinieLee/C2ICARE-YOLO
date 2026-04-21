@@ -172,6 +172,48 @@ This license requires that if you modify the code and provide a service over a n
   year={2026},
   note={Under review}
 }
+
+@dataset{AllkenRosen2020DeepVisionFishDataset,
+  author={Allken, Vaneeda and Rosen, Shale},
+  title={Deep Vision Fish Dataset},
+  year={2020},
+  doi={10.21335/NMDC-551736490},
+  url={https://doi.org/10.21335/NMDC-551736490}
+}
+
+@article{10.1093/icesjms/fsab227,
+    author = {Allken, Vaneeda and Rosen, Shale and Handegard, Nils Olav and Malde, Ketil},
+    title = {A deep learning-based method to identify and count pelagic and mesopelagic fishes from trawl camera images},
+    journal = {ICES Journal of Marine Science},
+    volume = {78},
+    number = {10},
+    pages = {3780-3792},
+    year = {2021},
+    month = {12},
+    abstract = {Fish counts and species information can be obtained from images taken within trawls, which enables trawl surveys to operate without extracting fish from their habitat, yields distribution data at fine scale for better interpretation of acoustic results, and can detect fish that are not retained in the catch due to mesh selection. To automate the process of image-based fish detection and identification, we trained a deep learning algorithm (RetinaNet) on images collected from the trawl-mounted Deep Vision camera system. In this study, we focused on the detection of blue whiting, Atlantic herring, Atlantic mackerel, and mesopelagic fishes from images collected in the Norwegian sea. To address the need for large amounts of annotated data to train these models, we used a combination of real and synthetic images, and obtained a mean average precision of 0.845 on a test set of 918 images. Regression models were used to compare predicted fish counts, which were derived from RetinaNet classification of fish in the individual image frames, with catch data collected at 20 trawl stations. We have automatically detected and counted fish from individual images, related these counts to the trawl catches, and discussed how to use this in regular trawl surveys.},
+    issn = {1054-3139},
+    doi = {10.1093/icesjms/fsab227},
+    url = {https://doi.org/10.1093/icesjms/fsab227},
+    eprint = {https://academic.oup.com/icesjms/article-pdf/78/10/3780/41772702/fsab227.pdf},
+}
+
+METADATA
+@article{https://doi.org/10.1002/gdj3.114,
+author = {Allken, Vaneeda and Rosen, Shale and Handegard, Nils Olav and Malde, Ketil},
+title = {A real-world dataset and data simulation algorithm for automated fish species identification},
+journal = {Geoscience Data Journal},
+volume = {8},
+number = {2},
+pages = {199-209},
+keywords = {data augmentation, fish dataset, machine learning, synthetic data},
+doi = {https://doi.org/10.1002/gdj3.114},
+url = {https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/gdj3.114},
+eprint = {https://rmets.onlinelibrary.wiley.com/doi/pdf/10.1002/gdj3.114},
+abstract = {Abstract Developing high-performing machine learning algorithms requires large amounts of annotated data. Manual annotation of data is labour-intensive, and the cost and effort needed are an important obstacle to the development and deployment of automated analysis. In a previous work, we have shown that deep learning classifiers can successfully be trained on synthetic images and annotations. Here, we provide a curated set of fish image data and backgrounds, the necessary software tools to generate synthetic images and annotations, and annotated real datasets to test classifier performance. The dataset is constructed from images collected using the Deep Vision system during two surveys from 2017 and 2018 that targeted economically important pelagic species in the Northeast Atlantic Ocean. We annotated a total of 1,879 images, randomly selected across trawl stations from both surveys, comprising 482 images of blue whiting, 456 images of Atlantic herring, 341 images of Atlantic mackerel, 335 images of mesopelagic fishes and 265 images containing a mixture of the four categories.},
+year = {2021}
+}
+
+
 ```
 
 
