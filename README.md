@@ -30,7 +30,7 @@
 ### C2ICARE Module
 
 <p align="center">
-  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="400">
+  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="100">
   <br>
   <em>Figure 2. Internal architecture of the proposed C2ICARE module.</em>
 </p>
