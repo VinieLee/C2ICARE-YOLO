@@ -60,7 +60,7 @@ To simulate the variability of underwater lighting conditions (which depend prim
 The training was limited to 50 epochs (full convergence was not pursued). All reported values are averaged across three independent runs with random seeds 0, 1, and 2. Figure 4 shows the mAP@0.5 progression over epochs for all model variants (M0–M9).
 
 <p align="center">
-  <img src="figures/mAP50_VS_Epoch.png" alt="mAP@0.5 progression over 50 epochs" width="700">
+  <img src="figures/mAP50_VS_Epoch.png" alt="mAP@0.5 progression over 50 epochs" width="500">
   <br>
   <em>Figure 4. Mean Average Precision (mAP@0.5) performance progress over 50 epochs, averaged across three independent runs (random seeds 0, 1, and 2). M0: YOLOv8n; M1: YOLO11n; M2: YOLO26n; M3: +FasterBlock; M4: +C2ICARE; M5: +C3Ghost; M6: +FasterBlock+C2ICARE; M7: +C2ICARE+C3Ghost; M8: +FasterBlock+C3Ghost; M9: all three modules.</em>
 </p>
