@@ -11,7 +11,7 @@
 ## 📢 Updates
 
 - `April 2026`: 🚀 Initial release of code and pretrained weights
-- `April 2026`: 📄 Paper under review
+- `April 2026`: 📄 Paper sent to journal
 
 ---
 
