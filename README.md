@@ -22,7 +22,7 @@
 **Figure 1** shows the detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules.
 
 <p align="center">
-  <img src="YOLO26+FasterBlock+C2ICARE.png" alt="Complete YOLO26n architecture" width="800">
+  <img src="figures/YOLO26+FasterBlock+C2ICARE.png" alt="Complete YOLO26n architecture" width="800">
   <br>
   <em>Figure 1. Detailed architecture of the proposed YOLO26n-based model.</em>
 </p>
@@ -30,7 +30,7 @@
 ### C2ICARE Module
 
 <p align="center">
-  <img src="C2ICARE_module.png" alt="C2ICARE module internal architecture" width="600">
+  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="600">
   <br>
   <em>Figure 2. Internal architecture of the proposed C2ICARE module.</em>
 </p>
@@ -42,7 +42,7 @@
 ### Data Augmentation
 
 <p align="center">
-  <img src="HSV_5x5_Hue_vs_Saturation.png" alt="HSV augmentation grid" width="600">
+  <img src="figures/HSV_5x5_Hue_vs_Saturation.png" alt="HSV augmentation grid" width="600">
   <br>
   <em>Figure 3. HSV augmentation grid for hue shift versus saturation factor.</em>
 </p>
@@ -50,7 +50,7 @@
 ### Training Performance
 
 <p align="center">
-  <img src="mAP50_VS_Epoch.png" alt="mAP@0.5 progression over 50 epochs" width="700">
+  <img src="figures/mAP50_VS_Epoch.png" alt="mAP@0.5 progression over 50 epochs" width="700">
   <br>
   <em>Figure 4. Mean Average Precision (mAP@0.5) performance progress over 50 epochs, averaged across three independent runs (random seeds 0, 1, and 2).</em>
 </p>
@@ -72,20 +72,22 @@
 | M8 | ✓ | | ✓ | 0.5541 | 0.3137 | 0.5268 | 0.5740 | 2,032,928 | 4.897 |
 | M9 | ✓ | ✓ | ✓ | 0.5406 | 0.3079 | 0.5230 | 0.5458 | 1,991,424 | 4.864 |
 
+*M0 represents the YOLOv8n baseline; M1 denotes the YOLO11n baseline; M2 is the YOLO26n baseline. M3 to M9 are the proposed YOLO26n architectural variants.*
+
 ### Multi‑Objective Performance
 
 <p align="center">
-  <img src="Radar_Plot.png" alt="Radar chart of multi-objective performance" width="600">
+  <img src="figures/Radar_Plot.png" alt="Radar chart of multi-objective performance" width="600">
   <br>
-  <em>Figure 6. Radial performance comparison of YOLO architectures (M0–M9). The GFLOPs axis is inverted.</em>
+  <em>Figure 6. Radial performance comparison of YOLO architectures (M0–M9). The GFLOPs axis is inverted such that peripheral placement reflects lower computational demand and enhanced efficiency.</em>
 </p>
 
 ### XAI Analysis: EigenCAM Visualisation
 
 <p align="center">
-  <img src="EigenCAM_3columns_ST6_6-20180506204859914.jpg" alt="EigenCAM visualisation results" width="800">
+  <img src="figures/EigenCAM_3columns_ST6_6-20180506204859914.jpg" alt="EigenCAM visualisation results" width="800">
   <br>
-  <em>Figure 7. EigenCAM visualisation for the proposed M6 model on test images. Colour coding: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).</em>
+  <em>Figure 7. EigenCAM visualisation for the proposed M6 model (based on YOLO26n) on four test images from the underwater camera dataset. The colour coding for bounding boxes is as follows: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).</em>
 </p>
 
 ---
@@ -99,41 +101,10 @@
 - PyTorch 1.10+
 - Ultralytics YOLOv8.0.117+
 
-
-
-###Dataset Preparation
-
-📁 your_dataset/
-├── 📁 images/
-│   ├── 📁 train/
-│   ├── 📁 val/
-│   └── 📁 test/
-├── 📁 labels/
-│   ├── 📁 train/
-│   ├── 📁 val/
-│   └── 📁 test/
-└── 📄 data.yaml
-
-###📄 License
-
-This project is licensed under the GNU Affero General Public License v3.0 - see the LICENSE file for details.
-This license requires that if you modify the code and provide a service over a network (e.g., a web API), you must make the complete source code available to users under the same license.
-
-###📚 Citation
-
-@article{SilvaAlvarado2026C2ICARE,
-  title={C2ICARE‑Optimized YOLO for Real‑Time Marine Species Detection via Multi‑Scale Convolutional Design},
-  author={Silva-Alvarado, Vinie Lee and Ahmad, Ali and Sendra, Sandra and Lloret, Jaime},
-  journal={[Journal Name]},
-  year={2026},
-  note={Under review}
-}
-
 ### Installation
 
 ```bash
 git clone https://github.com/VinieLee/C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design.git
 cd C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design
-pip install -r requirements.txt```
+pip install -r requirements.txt
 
-###Dataset Preparation
