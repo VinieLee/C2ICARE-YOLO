@@ -89,7 +89,7 @@ Table 2 summarizes the performance metrics and computational complexity for all 
 To determine the viability of the proposed models for real‑time deployment, a multi‑objective analysis was performed. Figure 6 presents a radial performance comparison of all YOLO architectures (M0–M9), integrating mAP@0.5, LPS, GESI, PEI, and GFLOPs. The GFLOPs axis is inverted such that peripheral placement reflects lower computational demand and enhanced efficiency.
 
 <p align="center">
-  <img src="figures/Radar_Plot.png"?t=20260430" alt="Radar chart of multi-objective performance" width="600">
+  <img src="figures/Radar_Plot.png?t=20260430" alt="Radar chart of multi-objective performance" width="600">
   <br>
   <em>Figure 6. Radial performance comparison of YOLO architectures (M0–M9). The GFLOPs axis is inverted such that peripheral placement reflects lower computational demand and enhanced efficiency.</em>
 </p>
@@ -99,29 +99,28 @@ To determine the viability of the proposed models for real‑time deployment, a 
 To validate that the M6 model's predictions are based on fish morphology rather than spurious background cues, an EigenCAM analysis was performed on test images from both the 2017 and 2018 cruises. Figure 7 shows EigenCAM visualisations for the proposed M6 model on four test images. The colour coding for bounding boxes is as follows: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).
 
 <p align="center">
-  <img src="figures/EigenCAM_3columns_ST1_135-20180503160446316.jpg"?t=20260440" alt="EigenCAM ST1_135" width="800">
+  <img src="figures/EigenCAM_3columns_ST1_135-20180503160446316.jpg?t=20260421" alt="EigenCAM ST1_135" width="800">
   <br>
   <em>Figure 7a. EigenCAM visualisation for ST1_135-20180503160446316: 3 bluewhiting, 2 herring, 1 mesopelagic.</em>
 </p>
 
 <p align="center">
-  <img src="figures/EigenCAM_3columns_ST6_6-20180506204859914.jpg"?t=20260450" alt="EigenCAM ST6_6" width="800">
+  <img src="figures/EigenCAM_3columns_ST6_6-20180506204859914.jpg?t=20260421" alt="EigenCAM ST6_6" width="800">
   <br>
   <em>Figure 7b. EigenCAM visualisation for ST6_6-20180506204859914: 6 mackerel, 5 herring.</em>
 </p>
 
 <p align="center">
-  <img src="figures/EigenCAM_3columns_ST019-13-20170511204755726.jpg"?t=20260460" alt="EigenCAM ST019-13" width="800">
+  <img src="figures/EigenCAM_3columns_ST019-13-20170511204755726.jpg?t=20260421" alt="EigenCAM ST019-13" width="800">
   <br>
   <em>Figure 7c. EigenCAM visualisation for ST019-13-20170511204755726: 8 mackerel.</em>
 </p>
 
 <p align="center">
-  <img src="figures/EigenCAM_3columns_ST033-864-607-20170520203304451.jpg"?t=20260470" alt="EigenCAM ST033-864" width="800">
+  <img src="figures/EigenCAM_3columns_ST033-864-607-20170520203304451.jpg?t=20260421" alt="EigenCAM ST033-864" width="800">
   <br>
   <em>Figure 7d. EigenCAM visualisation for ST033-864-607-20170520203304451: 2 bluewhiting, 12 herring.</em>
 </p>
-
 ---
 
 ## 🚀 Quick Start
