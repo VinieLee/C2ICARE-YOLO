@@ -17,20 +17,24 @@
 
 ## 🏗️ Architecture
 
+This section describes the architectural design of the proposed model. Figure 1 presents the complete YOLO26n-based architecture with the integrated modules (FasterBlock, C2ICARE, and C3Ghost), while Figure 2 details the internal structure of the C2ICARE module.
+
 ### Complete Model Architecture
 
-**Figure 1** shows the detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules.
+**Figure 1** shows the detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules for optimized fish detection in underwater cameras.
 
 <p align="center">
   <img src="figures/YOLO26+FasterBlock+C2ICARE.png" alt="Complete YOLO26n architecture" width="800">
   <br>
-  <em>Figure 1. Detailed architecture of the proposed YOLO26n-based model.</em>
+  <em>Figure 1. Detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules.</em>
 </p>
 
 ### C2ICARE Module
 
+The C2ICARE module is the core contribution of this work. It employs a partitioned memory‑feature split, multi‑scale depthwise convolutions (3×3 and 7×7), and a simplified cross‑branch projection to enhance multi‑scale feature extraction while maintaining low computational overhead.
+
 <p align="center">
-  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="100">
+  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="400">
   <br>
   <em>Figure 2. Internal architecture of the proposed C2ICARE module.</em>
 </p>
@@ -39,25 +43,31 @@
 
 ## 📊 Experimental Results
 
+This section presents the quantitative and qualitative results of our experiments. We evaluate data augmentation strategies, training performance, detection metrics, multi‑objective optimization, and explainability analysis.
+
 ### Data Augmentation
+
+To simulate the variability of underwater lighting conditions (which depend primarily on artificial illumination rather than ambient light), HSV shifts were applied with a hue shift range of ±0.5 and a saturation multiplier ranging from 0 to 2.
 
 <p align="center">
   <img src="figures/HSV_5x5_Hue_vs_Saturation.png" alt="HSV augmentation grid" width="600">
   <br>
-  <em>Figure 3. HSV augmentation grid for hue shift versus saturation factor.</em>
+  <em>Figure 3. HSV augmentation grid for hue shift versus saturation factor. The centre cell (hue=0, saturation=1) corresponds to the original image.</em>
 </p>
 
 ### Training Performance
 
+The training was limited to 50 epochs (full convergence was not pursued). All reported values are averaged across three independent runs with random seeds 0, 1, and 2. Figure 4 shows the mAP@0.5 progression over epochs for all model variants (M0–M9).
+
 <p align="center">
   <img src="figures/mAP50_VS_Epoch.png" alt="mAP@0.5 progression over 50 epochs" width="700">
   <br>
-  <em>Figure 4. Mean Average Precision (mAP@0.5) performance progress over 50 epochs, averaged across three independent runs (random seeds 0, 1, and 2).</em>
+  <em>Figure 4. Mean Average Precision (mAP@0.5) performance progress over 50 epochs, averaged across three independent runs (random seeds 0, 1, and 2). M0: YOLOv8n; M1: YOLO11n; M2: YOLO26n; M3: +FasterBlock; M4: +C2ICARE; M5: +C3Ghost; M6: +FasterBlock+C2ICARE; M7: +C2ICARE+C3Ghost; M8: +FasterBlock+C3Ghost; M9: all three modules.</em>
 </p>
 
 ### Performance Metrics
 
-**Table 2** summarizes the performance metrics and computational complexity for all model configurations on the test split.
+Table 2 summarizes the performance metrics and computational complexity for all model configurations evaluated on the test split. Metrics include mAP@0.5, mAP@0.5:0.95, precision, recall, number of parameters, and GFLOPs.
 
 | Model | FasterBlock | C2ICARE | C3Ghost | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall | Parameters | GFLOPs |
 |-------|-------------|---------|---------|---------|--------------|-----------|--------|------------|--------|
@@ -76,6 +86,8 @@
 
 ### Multi‑Objective Performance
 
+To determine the viability of the proposed models for real‑time deployment, a multi‑objective analysis was performed. Figure 6 presents a radial performance comparison of all YOLO architectures (M0–M9), integrating mAP@0.5, LPS, GESI, PEI, and GFLOPs. The GFLOPs axis is inverted such that peripheral placement reflects lower computational demand and enhanced efficiency.
+
 <p align="center">
   <img src="figures/Radar_Plot.png" alt="Radar chart of multi-objective performance" width="600">
   <br>
@@ -84,7 +96,7 @@
 
 ### XAI Analysis: EigenCAM Visualisation
 
-**Figure 7** shows EigenCAM visualisations for the proposed M6 model on test images from the underwater camera dataset. The colour coding for bounding boxes is as follows: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).
+To validate that the M6 model's predictions are based on fish morphology rather than spurious background cues, an EigenCAM analysis was performed on test images from both the 2017 and 2018 cruises. Figure 7 shows EigenCAM visualisations for the proposed M6 model on four test images. The colour coding for bounding boxes is as follows: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).
 
 <p align="center">
   <img src="figures/EigenCAM_3columns_ST1_135-20180503160446316.jpg" alt="EigenCAM ST1_135" width="800">
@@ -114,6 +126,8 @@
 
 ## 🚀 Quick Start
 
+This section provides instructions to set up, train, validate, and run inference with the proposed model.
+
 ### Prerequisites
 
 - Python 3.8+
@@ -123,13 +137,15 @@
 
 ### Installation
 
+Clone the repository and install the required dependencies:
+
 ```bash
 git clone https://github.com/VinieLee/C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design.git
 cd C2ICARE-Optimized-YOLO-for-Real-Time-Marine-Species-Detection-via-Multi-Scale-Convolutional-Design
 pip install -r requirements.txt
 ```
 
-###Dataset Preparation
+### Dataset Preparation
 ```
 📁 your_dataset/
 ├── 📁 images/
@@ -142,12 +158,12 @@ pip install -r requirements.txt
 │   └── 📁 test/
 └── 📄 data.yaml
 ```
-###📄 License
+### 📄 License
 
 This project is licensed under the GNU Affero General Public License v3.0 - see the LICENSE file for details.
 This license requires that if you modify the code and provide a service over a network (e.g., a web API), you must make the complete source code available to users under the same license.
 
-###📚 Citation
+### 📚 Citation
 ```bash
 @article{SilvaAlvarado2026C2ICARE,
   title={C2ICARE‑Optimized YOLO for Real‑Time Marine Species Detection via Multi‑Scale Convolutional Design},
