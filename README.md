@@ -34,7 +34,7 @@ This section describes the architectural design of the proposed model. Figure 1 
 The C2ICARE module is the core contribution of this work. It employs a partitioned memory‑feature split, multi‑scale depthwise convolutions (3×3 and 7×7), and a simplified cross‑branch projection to enhance multi‑scale feature extraction while maintaining low computational overhead.
 
 <p align="center">
-  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="400">
+  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="200">
   <br>
   <em>Figure 2. Internal architecture of the proposed C2ICARE module.</em>
 </p>
