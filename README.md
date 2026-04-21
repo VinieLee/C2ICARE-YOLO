@@ -125,7 +125,7 @@ To validate that the M6 model's predictions are based on fish morphology rather 
 
 ## 🚀 Quick Start
 
-This section provides instructions to set up, train, validate, and run inference with the proposed model.
+This section provides instructions to set up and run the proposed model.
 
 ### Prerequisites
 
