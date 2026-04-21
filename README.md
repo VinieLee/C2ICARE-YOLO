@@ -10,8 +10,8 @@
 
 ## 📢 Updates
 
-- `[Date]`: 🚀 Initial release of code and pretrained weights
-- `[Date]`: 📄 Paper accepted at [Conference/Journal Name]
+- `April 2026`: 🚀 Initial release of code and pretrained weights
+- `April 2026`: 📄 Paper available
 
 ---
 
@@ -19,18 +19,18 @@
 
 ### Complete Model Architecture
 
-**Figure 1** shows the detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules for optimized fish detection in underwater cameras.
+**Figure 1** shows the detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules.
 
 <p align="center">
-  <img src="figures/architecture_complete.png" alt="Complete YOLO26n architecture with FasterBlock, C2ICARE, and C3Ghost modules" width="800">
+  <img src="Figures/YOLO26+FasterBlock+C2ICARE.png" alt="Complete YOLO26n architecture" width="800">
   <br>
-  <em>Figure 1. Detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules for optimized fish detection in underwater cameras.</em>
+  <em>Figure 1. Detailed architecture of the proposed YOLO26n-based model.</em>
 </p>
 
 ### C2ICARE Module
 
 <p align="center">
-  <img src="figures/c2icare_module.png" alt="C2ICARE module internal architecture" width="600">
+  <img src="Figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="600">
   <br>
   <em>Figure 2. Internal architecture of the proposed C2ICARE module.</em>
 </p>
@@ -41,22 +41,18 @@
 
 ### Data Augmentation
 
-To simulate the variability of underwater lighting conditions, HSV shifts were applied with a hue shift range of ±0.5 and a saturation multiplier ranging from 0 to 2.
-
 <p align="center">
-  <img src="figures/hsv_augmentation.png" alt="HSV augmentation grid" width="600">
+  <img src="Figures/HSV_5x5_Hue_vs_Saturation.png" alt="HSV augmentation grid" width="600">
   <br>
   <em>Figure 3. HSV augmentation grid for hue shift versus saturation factor.</em>
 </p>
 
 ### Training Performance
 
-**Figure 4** shows the mAP@0.5 progression over 50 epochs for all model variants (M0–M9), averaged across three independent runs (random seeds 0, 1, and 2).
-
 <p align="center">
-  <img src="figures/mAP50_progress.png" alt="mAP@0.5 progression over 50 epochs" width="700">
+  <img src="Figures/mAP50_VS_Epoch.png" alt="mAP@0.5 progression over 50 epochs" width="700">
   <br>
-  <em>Figure 4. Mean Average Precision (mAP@0.5) performance progress over 50 epochs, averaged across three independent runs (random seeds 0, 1, and 2). M0 represents the YOLOv8n baseline; M1 denotes the YOLO11n baseline; M2 is the YOLO26n baseline; M3 is YOLO26n + FasterBlock; M4 is YOLO26n + C2ICARE; M5 is YOLO26n + C3Ghost; M6 is YOLO26n + FasterBlock + C2ICARE; M7 is YOLO26n + C2ICARE + C3Ghost; M8 is YOLO26n + FasterBlock + C3Ghost; and M9 is YOLO26n + FasterBlock + C2ICARE + C3Ghost.</em>
+  <em>Figure 4. Mean Average Precision (mAP@0.5) performance progress over 50 epochs, averaged across three independent runs (random seeds 0, 1, and 2).</em>
 </p>
 
 ### Performance Metrics
@@ -76,26 +72,20 @@ To simulate the variability of underwater lighting conditions, HSV shifts were a
 | M8 | ✓ | | ✓ | 0.5541 | 0.3137 | 0.5268 | 0.5740 | 2,032,928 | 4.897 |
 | M9 | ✓ | ✓ | ✓ | 0.5406 | 0.3079 | 0.5230 | 0.5458 | 1,991,424 | 4.864 |
 
-*M0 represents the YOLOv8n baseline; M1 denotes the YOLO11n baseline; M2 is the YOLO26n baseline. M3 to M9 are the proposed YOLO26n architectural variants.*
-
 ### Multi‑Objective Performance
 
-**Figure 6** presents a radial performance comparison of all YOLO architectures (M0–M9). The GFLOPs axis is inverted such that peripheral placement reflects lower computational demand and enhanced efficiency.
-
 <p align="center">
-  <img src="figures/radar_chart.png" alt="Radar chart of multi-objective performance" width="600">
+  <img src="Figures/Radar_Plot.png" alt="Radar chart of multi-objective performance" width="600">
   <br>
-  <em>Figure 6. Radial performance comparison of YOLO architectures (M0–M9). The GFLOPs axis is inverted such that peripheral placement reflects lower computational demand and enhanced efficiency.</em>
+  <em>Figure 6. Radial performance comparison of YOLO architectures (M0–M9). The GFLOPs axis is inverted.</em>
 </p>
 
 ### XAI Analysis: EigenCAM Visualisation
 
-**Figure 7** shows EigenCAM visualisations for the proposed M6 model on four test images from the underwater camera dataset. The colour coding for bounding boxes is as follows: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).
-
 <p align="center">
-  <img src="figures/eigencam_results.png" alt="EigenCAM visualisation results" width="800">
+  <img src="Figures/EigenCAM_3columns_ST6_6-20180506204859914.jpg" alt="EigenCAM visualisation results" width="800">
   <br>
-  <em>Figure 7. EigenCAM visualisation for the proposed M6 model (based on YOLO26n) on four test images from the underwater camera dataset. Subfigure (a) shows the original image ST1_135-20180503160446316, and (b) displays its EigenCAM heatmap with coloured bounding boxes, where the model detected 3 bluewhiting, 2 herring, and 1 mesopelagic individual. Subfigure (c) shows the original image ST6_6-20180506204859914, and (d) displays its heatmap with 6 mackerel and 5 herring detections. Subfigure (e) shows the original image ST019-13-20170511204755726, and (f) displays its heatmap with 8 mackerel detection. Subfigure (g) shows the original image ST033-864-607-20170520203304451, and (h) displays its heatmap with 2 bluewhiting and 12 herring detections.</em>
+  <em>Figure 7. EigenCAM visualisation for the proposed M6 model on test images. Colour coding: mackerel (red), herring (green), bluewhiting (white), mesopelagic (yellow).</em>
 </p>
 
 ---
@@ -108,6 +98,9 @@ To simulate the variability of underwater lighting conditions, HSV shifts were a
 - CUDA 11.8 (for GPU training)
 - PyTorch 1.10+
 - Ultralytics YOLOv8.0.117+
+
+
+- 
 ###Dataset Preparation
 
 📁 your_dataset/
