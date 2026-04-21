@@ -24,7 +24,7 @@ This section describes the architectural design of the proposed model. Figure 1 
 **Figure 1** shows the detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules for optimized fish detection in underwater cameras.
 
 <p align="center">
-  <img src="figures/YOLO26+FasterBlock+C2ICARE.png" alt="Complete YOLO26n architecture" width="800">
+  <img src="figures/YOLO26+FasterBlock+C2ICARE_.png" alt="Complete YOLO26n architecture" width="800">
   <br>
   <em>Figure 1. Detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules.</em>
 </p>
