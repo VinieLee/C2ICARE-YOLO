@@ -32,7 +32,7 @@ class FasterBlock(nn.Module):
     def forward(self, x):
         return self.shortcut(x) + self.mlp(self.conv(x))
 
-class CAREBlock(nn.Module):
+class C2ICAREBlock(nn.Module):
     def __init__(self, dim, mem_ratio=0.25):
         super().__init__()
         mem_dim = int(dim * mem_ratio)
@@ -86,7 +86,7 @@ class C2ICARE(nn.Module):
         self.cv2 = Conv(2 * self.c, c1, 1)
 
         self.blocks = nn.Sequential(*[
-            CAREBlock(self.c, mem_ratio=0.25)
+            C2ICAREBlock(self.c, mem_ratio=0.25)
             for _ in range(n)
         ])
 
