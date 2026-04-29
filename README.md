@@ -20,36 +20,30 @@
 
 This section describes the architectural design of the proposed C2ICARE module and its integration into YOLO26n.
 
-### Complete Model Architecture
+### C2ICARE Block Architecture
 
 The proposed C2ICARE module is inserted at layer 10 of the YOLO26n backbone, replacing the standard C2PSA layer. This insertion point was selected because it occurs at a stage where feature maps have reached sufficient abstraction to benefit from multi‑scale processing while still maintaining a resolution that allows precise spatial localization. The detection head (layer 23) remains trainable from the beginning.
 
 **Figure 1** shows the architectural comparison between the CARE Block and the proposed C2ICARE Block.
 
 <p align="center">
-  <img src="figures/CARE_vs_C2ICARE.png" alt="Architectural comparison between CARE and C2ICARE" width="800">
+  <img src="figures/CARE_vs_C2ICARE.png" alt="Architectural comparison between CARE and C2ICARE" width="500">
   <br>
   <em>Figure 1. Architectural comparison between (a) the CARE Block and (b) the proposed C2ICARE Block. The C2ICARE Block replaces the complex three‑branch parallel processing of CARE with a simplified memory‑feature split, multi‑scale depthwise convolutions (3×3 and 7×7), a single cross‑branch projection, and a lightweight ConvNeXt FFN.</em>
 </p>
 
-### C2ICARE Block Architecture
-
 The C2ICARE module employs a partitioned memory‑feature split (1:3 ratio), multi‑scale depthwise convolutions (3×3 for fine‑grained local structures and 7×7 for broader semantic regions), cross‑branch interaction via 1×1 convolution, concatenation, ConvNeXt-style feed‑forward network (FFN), and residual connection with learnable layer scaling.
 
-<p align="center">
-  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="400">
-  <br>
-  <em>Figure 2. Internal architecture of the proposed C2ICARE block. The processing pipeline is organized into memory‑feature split, multi‑scale depthwise convolution, cross‑branch interaction, concatenation, FFN recalibration, and residual connection with layer scaling.</em>
-</p>
+
 
 ### C2ICARE Wrapper Module
 
 To facilitate seamless integration into existing YOLO-based detection architectures, a wrapper module encapsulates the C2ICARE block within a residual-style structure, serving as a drop‑in replacement for standard convolutional blocks such as the C3k2 module.
 
 <p align="center">
-  <img src="figures/C2ICARE_wrapper.png" alt="C2ICARE wrapper module architecture" width="500">
+  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="200">
   <br>
-  <em>Figure 3. Architecture of the C2ICARE wrapper module. The purple‑shaded region corresponds to the internal C2ICARE block. The wrapper applies channel expansion, splitting, residual branch processing, and channel reduction.</em>
+  <em>Figure 2. Internal architecture of the proposed C2ICARE block. The processing pipeline is organized into memory‑feature split, multi‑scale depthwise convolution, cross‑branch interaction, concatenation, FFN recalibration, and residual connection with layer scaling.</em>
 </p>
 
 ---
@@ -62,15 +56,6 @@ This section presents the quantitative results of our experiments, including tra
 
 All models were trained for 50 epochs with a batch size of 64 and an input resolution of 640×640 pixels, using deterministic settings with random seeds 0, 1, and 2 for reproducibility. A three‑phase progressive freezing strategy was employed to ensure fair comparison. All reported values are expressed as mean ± expanded uncertainty (k=2), providing a 95% confidence interval following the Guide to the Expression of Uncertainty in Measurement (GUM).
 
-**Figure 4** shows the mAP@0.5:0.95 progression over 50 epochs for all evaluated attention modules (M0–M4).
-
-<p align="center">
-  <img src="figures/mAP_50_epochs.png" alt="mAP@0.5:0.95 progression over 50 epochs" width="600">
-  <br>
-  <em>Figure 4. Mean Average Precision (mAP@0.5:0.95), expressed in non‑dimensional units (n.u.), as a function of 50 training epochs. Data represents the average of three independent runs (random seeds 0, 1, and 2). M0: YOLO26n + CoordAtt; M1: YOLO26n + FasterBlock; M2: YOLO26n + ImCA; M3: YOLO26n + CBAM; M4: YOLO26n + C2ICARE (proposed).</em>
-</p>
-
-### Performance Metrics
 
 **Table 1** summarises the performance metrics and computational complexity for all evaluated attention modules on the YOLO26n baseline. Values are reported as mean ± expanded uncertainty (k=2).
 
@@ -84,13 +69,7 @@ All models were trained for 50 epochs with a batch size of 64 and an input resol
 
 ### Multi‑Objective Evaluation
 
-To select the most suitable architecture for real‑time deployment on underwater camera systems, a multi‑objective evaluation framework was established using LPS, GESI, PEI, and Pareto Frontier analysis. **Figure 5** presents a radar chart comparing all YOLO variants with different modules.
-
-<p align="center">
-  <img src="figures/Radar_Chart.png" alt="Radar chart of multi-objective performance" width="600">
-  <br>
-  <em>Figure 5. Radar chart comparing YOLO variants with different modules in layer 10. The GFLOPs axis is inverted; peripheral placement reflects lower computational demand and higher efficiency.</em>
-</p>
+To select the most suitable architecture for real‑time deployment on underwater camera systems, a multi‑objective evaluation framework was established using LPS, GESI, PEI, and Pareto Frontier analysis. 
 
 **Table 2** presents the multi‑objective ranking and Pareto efficiency results.
 
@@ -109,27 +88,26 @@ To validate that the **fine‑tuned M6 model** (obtained after transfer learning
 <p align="center">
   <img src="figures/EigenCAM_3columns_ST1_135-20180503160446316.jpg?t=20260421" alt="EigenCAM ST1_135" width="800">
   <br>
-  <em>Figure 7a. EigenCAM visualisation for ST1_135-20180503160446316: 3 bluewhiting, 2 herring, 1 mesopelagic.</em>
+  <em>Figure 7a. EigenCAM visualisation: 3 bluewhiting, 2 herring, 1 mesopelagic.</em>
 </p>
 
 <p align="center">
   <img src="figures/EigenCAM_3columns_ST6_6-20180506204859914.jpg?t=20260421" alt="EigenCAM ST6_6" width="800">
   <br>
-  <em>Figure 7b. EigenCAM visualisation for ST6_6-20180506204859914: 6 mackerel, 5 herring.</em>
+  <em>Figure 7b. EigenCAM visualisation: 6 mackerel, 5 herring.</em>
 </p>
 
 <p align="center">
   <img src="figures/EigenCAM_3columns_ST019-13-20170511204755726.jpg?t=20260421" alt="EigenCAM ST019-13" width="800">
   <br>
-  <em>Figure 7c. EigenCAM visualisation for ST019-13-20170511204755726: 8 mackerel.</em>
+  <em>Figure 7c. EigenCAM visualisation: 8 mackerel.</em>
 </p>
 
 <p align="center">
   <img src="figures/EigenCAM_3columns_ST033-864-607-20170520203304451.jpg?t=20260421" alt="EigenCAM ST033-864" width="800">
   <br>
-  <em>Figure 7d. EigenCAM visualisation for ST033-864-607-20170520203304451: 2 bluewhiting, 12 herring.</em>
+  <em>Figure 7d. EigenCAM visualisation: 2 bluewhiting, 12 herring.</em>
 </p>
----
 
 ## 🚀 Quick Start
 
@@ -157,8 +135,7 @@ This section provides instructions to set up and run the proposed model.
 ```
 ### 📄 License
 
-This project is licensed under the GNU Affero General Public License v3.0 - see the LICENSE file for details.
-This license requires that if you modify the code and provide a service over a network (e.g., a web API), you must make the complete source code available to users under the same license.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ### 📚 Citation
 
@@ -205,17 +182,17 @@ This work acknowledges the foundational contributions of the research community.
 }
 
 @article{https://doi.org/10.1002/gdj3.114,
-author = {Allken, Vaneeda and Rosen, Shale and Handegard, Nils Olav and Malde, Ketil},
-title = {A real-world dataset and data simulation algorithm for automated fish species identification},
-journal = {Geoscience Data Journal},
-volume = {8},
-number = {2},
-pages = {199-209},
-keywords = {data augmentation, fish dataset, machine learning, synthetic data},
-doi = {https://doi.org/10.1002/gdj3.114},
-url = {https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/gdj3.114},
-eprint = {https://rmets.onlinelibrary.wiley.com/doi/pdf/10.1002/gdj3.114},
-year = {2021}
+    author = {Allken, Vaneeda and Rosen, Shale and Handegard, Nils Olav and Malde, Ketil},
+    title = {A real-world dataset and data simulation algorithm for automated fish species identification},
+    journal = {Geoscience Data Journal},
+    volume = {8},
+    number = {2},
+    pages = {199-209},
+    keywords = {data augmentation, fish dataset, machine learning, synthetic data},
+    doi = {https://doi.org/10.1002/gdj3.114},
+    url = {https://rmets.onlinelibrary.wiley.com/doi/abs/10.1002/gdj3.114},
+    eprint = {https://rmets.onlinelibrary.wiley.com/doi/pdf/10.1002/gdj3.114},
+    year = {2021}
 }
 
 
