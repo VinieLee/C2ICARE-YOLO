@@ -1,102 +1,106 @@
-# C2ICARE‑Optimized YOLO for Real‑Time Marine Species Detection via Multi‑Scale Convolutional Design
+# C2ICARE: Convolution to Interactive Capture and Re‑calibration Enhancement for Real‑Time Object Detection
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Ultralytics](https://img.shields.io/badge/Ultralytics-YOLO26n-00BFFF.svg)](https://github.com/ultralytics/ultralytics)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 
-**Official implementation of C2ICARE (Convolution to Interactive Capture and Re‑calibration Enhancement), a multi‑scale convolutional module that optimizes YOLO for real‑time marine species detection. It surpasses the YOLO26n baseline in accuracy by 12% while reducing GFLOPs by 1.3%.** 
+**Official implementation of C2ICARE (Convolution to Interactive Capture and Re‑calibration Enhancement), a lightweight multi‑scale attention module that preserves spatial information through a memory‑feature split while capturing multi‑scale patterns via depthwise convolutions (3×3 and 7×7). Integrated into YOLO26n, C2ICARE achieves mAP@0.5:0.95 of 0.7033 ± 0.0207, outperforming CoordAtt (+3.8%), CBAM (+0.4%), FasterBlock (+1.7%), and ImCA (+0.6%) on an underwater fish dataset.**
 
 ---
 
 ## 📢 Updates
 
 - `April 2026`: 🚀 Initial release of code and pretrained weights
-- `April 2026`: 📄 Paper sent to journal
+- `April 2026`: 📄 Paper submitted to *Mathematical Methods in the Applied Sciences*
 
 ---
 
 ## 🏗️ Architecture
 
-This section describes the architectural design of the proposed model. Figure 1 presents the complete YOLO26n-based architecture with the integrated modules (FasterBlock, C2ICARE, and C3Ghost), while Figure 2 details the internal structure of the C2ICARE module.
-
-All baseline and ablation models (M0–M9) reported in Table 2 were **trained from scratch** to ensure a fair comparison of the architectural contributions. The pretrained weights provided in this repository (`best.pt`) correspond to the **M6 model after transfer learning**, initialised with COCO‑pretrained weights and fine‑tuned on the marine species dataset. This fine‑tuned version achieves a **mAP@0.5 of 0.9032**, demonstrating the benefits of transfer learning for real‑world deployment.
-
-**We encourage researchers to test the proposed model on their own underwater datasets, explore longer training epochs to potentially improve performance, and evaluate the C2ICARE module within other Deep Learning architectures.** Your feedback and contributions are welcome.
+This section describes the architectural design of the proposed C2ICARE module and its integration into YOLO26n.
 
 ### Complete Model Architecture
 
-**Figure 1** shows the detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules for optimized fish detection in underwater cameras.
+The proposed C2ICARE module is inserted at layer 10 of the YOLO26n backbone, replacing the standard C2PSA layer. This insertion point was selected because it occurs at a stage where feature maps have reached sufficient abstraction to benefit from multi‑scale processing while still maintaining a resolution that allows precise spatial localization. The detection head (layer 23) remains trainable from the beginning.
+
+**Figure 1** shows the architectural comparison between the CARE Block and the proposed C2ICARE Block.
 
 <p align="center">
-  <img src="figures/YOLO26+FasterBlock+C2ICARE_.png" alt="Complete YOLO26n architecture" width="800">
+  <img src="figures/CARE_vs_C2ICARE.png" alt="Architectural comparison between CARE and C2ICARE" width="800">
   <br>
-  <em>Figure 1. Detailed architecture of the proposed YOLO26n-based model, integrating FasterBlock, C2ICARE, and C3Ghost modules.</em>
+  <em>Figure 1. Architectural comparison between (a) the CARE Block and (b) the proposed C2ICARE Block. The C2ICARE Block replaces the complex three‑branch parallel processing of CARE with a simplified memory‑feature split, multi‑scale depthwise convolutions (3×3 and 7×7), a single cross‑branch projection, and a lightweight ConvNeXt FFN.</em>
 </p>
 
-### C2ICARE Module
+### C2ICARE Block Architecture
 
-The C2ICARE module is the core contribution of this work. It employs a partitioned memory‑feature split, multi‑scale depthwise convolutions (3×3 and 7×7), and a simplified cross‑branch projection to enhance multi‑scale feature extraction while maintaining low computational overhead.
+The C2ICARE module employs a partitioned memory‑feature split (1:3 ratio), multi‑scale depthwise convolutions (3×3 for fine‑grained local structures and 7×7 for broader semantic regions), cross‑branch interaction via 1×1 convolution, concatenation, ConvNeXt-style feed‑forward network (FFN), and residual connection with learnable layer scaling.
 
 <p align="center">
-  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="200">
+  <img src="figures/C2ICARE_module.png" alt="C2ICARE module internal architecture" width="400">
   <br>
-  <em>Figure 2. Internal architecture of the proposed C2ICARE module.</em>
+  <em>Figure 2. Internal architecture of the proposed C2ICARE block. The processing pipeline is organized into memory‑feature split, multi‑scale depthwise convolution, cross‑branch interaction, concatenation, FFN recalibration, and residual connection with layer scaling.</em>
+</p>
+
+### C2ICARE Wrapper Module
+
+To facilitate seamless integration into existing YOLO-based detection architectures, a wrapper module encapsulates the C2ICARE block within a residual-style structure, serving as a drop‑in replacement for standard convolutional blocks such as the C3k2 module.
+
+<p align="center">
+  <img src="figures/C2ICARE_wrapper.png" alt="C2ICARE wrapper module architecture" width="500">
+  <br>
+  <em>Figure 3. Architecture of the C2ICARE wrapper module. The purple‑shaded region corresponds to the internal C2ICARE block. The wrapper applies channel expansion, splitting, residual branch processing, and channel reduction.</em>
 </p>
 
 ---
 
 ## 📊 Experimental Results
 
-This section presents the quantitative and qualitative results of our experiments. We evaluate data augmentation strategies, training performance, detection metrics, multi‑objective optimization, and explainability analysis.
-
-### Data Augmentation
-
-To simulate the variability of underwater lighting conditions (which depend primarily on artificial illumination rather than ambient light), HSV shifts were applied with a hue shift range of ±0.5 and a saturation multiplier ranging from 0 to 2.
-
-<p align="center">
-  <img src="figures/HSV_5x5_Hue_vs_Saturation.png" alt="HSV augmentation grid" width="600">
-  <br>
-  <em>Figure 3. HSV augmentation grid for hue shift versus saturation factor. The centre cell (hue=0, saturation=1) corresponds to the original image.</em>
-</p>
+This section presents the quantitative results of our experiments, including training dynamics, detection metrics, multi‑objective optimisation, threshold optimisation for reliable detection, and XAI visualisation.
 
 ### Training Performance
 
-The training was limited to 50 epochs (full convergence was not pursued). All reported values are averaged across three independent runs with random seeds 0, 1, and 2. Figure 4 shows the mAP@0.5 progression over epochs for all model variants (M0–M9).
+All models were trained for 50 epochs with a batch size of 64 and an input resolution of 640×640 pixels, using deterministic settings with random seeds 0, 1, and 2 for reproducibility. A three‑phase progressive freezing strategy was employed to ensure fair comparison. All reported values are expressed as mean ± expanded uncertainty (k=2), providing a 95% confidence interval following the Guide to the Expression of Uncertainty in Measurement (GUM).
+
+**Figure 4** shows the mAP@0.5:0.95 progression over 50 epochs for all evaluated attention modules (M0–M4).
 
 <p align="center">
-  <img src="figures/mAP50_VS_Epoch.png?t=20260421" alt="mAP@0.5 progression over 50 epochs" width="500">
+  <img src="figures/mAP_50_epochs.png" alt="mAP@0.5:0.95 progression over 50 epochs" width="600">
   <br>
-  <em>Figure 4. Mean Average Precision (mAP@0.5) performance progress over 50 epochs, averaged across three independent runs (random seeds 0, 1, and 2). M0: YOLOv8n; M1: YOLO11n; M2: YOLO26n; M3: +FasterBlock; M4: +C2ICARE; M5: +C3Ghost; M6: +FasterBlock+C2ICARE; M7: +C2ICARE+C3Ghost; M8: +FasterBlock+C3Ghost; M9: all three modules.</em>
+  <em>Figure 4. Mean Average Precision (mAP@0.5:0.95), expressed in non‑dimensional units (n.u.), as a function of 50 training epochs. Data represents the average of three independent runs (random seeds 0, 1, and 2). M0: YOLO26n + CoordAtt; M1: YOLO26n + FasterBlock; M2: YOLO26n + ImCA; M3: YOLO26n + CBAM; M4: YOLO26n + C2ICARE (proposed).</em>
 </p>
 
 ### Performance Metrics
 
-Table 2 summarizes the performance metrics and computational complexity for all model configurations evaluated on the test split. Metrics include mAP@0.5, mAP@0.5:0.95, precision, recall, number of parameters, and GFLOPs.
+**Table 1** summarises the performance metrics and computational complexity for all evaluated attention modules on the YOLO26n baseline. Values are reported as mean ± expanded uncertainty (k=2).
 
-| Model | FasterBlock | C2ICARE | C3Ghost | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall | Parameters | GFLOPs |
-|-------|-------------|---------|---------|---------|--------------|-----------|--------|------------|--------|
-| M0 | | | | 0.5571 | 0.3071 | 0.5374 | 0.5853 | 3,006,428 | 8.088 |
-| M1 | | | | 0.4892 | 0.2474 | 0.4795 | 0.5263 | 2,582,932 | 6.316 |
-| M2 | | | | 0.5777 | 0.3325 | 0.5740 | 0.5475 | 2,375,616 | 5.193 |
-| M3 | ✓ | | | 0.5672 | 0.3214 | 0.5617 | 0.5442 | 2,319,296 | 5.125 |
-| M4 | | ✓ | | 0.6369 | 0.3715 | 0.6217 | 0.6034 | 2,334,112 | 5.160 |
-| M5 | | | ✓ | 0.5798 | 0.3376 | 0.5658 | 0.5477 | 2,089,248 | 4.964 |
-| M6 | ✓ | ✓ | | 0.6375 | 0.3800 | 0.6248 | 0.6029 | 2,277,792 | 5.093 |
-| M7 | | ✓ | ✓ | 0.5550 | 0.3125 | 0.5356 | 0.5274 | 2,047,744 | 4.931 |
-| M8 | ✓ | | ✓ | 0.5541 | 0.3137 | 0.5268 | 0.5740 | 2,032,928 | 4.897 |
-| M9 | ✓ | ✓ | ✓ | 0.5406 | 0.3079 | 0.5230 | 0.5458 | 1,991,424 | 4.864 |
+| Model | mAP@0.5:0.95 (95% CI) | Parameters | GFLOPs |
+|-------|----------------------|------------|--------|
+| YOLO26n + CoordAtt | 0.6774 ± 0.0203 | 2,140,144 | 5.009 |
+| YOLO26n + FasterBlock | 0.6912 ± 0.0218 | 2,427,328 | 5.236 |
+| YOLO26n + ImCA | 0.6990 ± 0.0194 | 2,139,616 | 5.021 |
+| YOLO26n + CBAM | 0.7003 ± 0.0184 | 2,135,860 | 5.008 |
+| **YOLO26n + C2ICARE (Ours)** | **0.7033 ± 0.0207** | **2,334,112** | **5.160** |
 
-*M0 represents the YOLOv8n baseline; M1 denotes the YOLO11n baseline; M2 is the YOLO26n baseline. M3 to M9 are the proposed YOLO26n architectural variants.*
+### Multi‑Objective Evaluation
 
-### Multi‑Objective Performance
-
-To determine the viability of the proposed models for real‑time deployment, a multi‑objective analysis was performed. Figure 6 presents a radial performance comparison of all YOLO architectures (M0–M9), integrating mAP@0.5, LPS, GESI, PEI, and GFLOPs. The GFLOPs axis is inverted such that peripheral placement reflects lower computational demand and enhanced efficiency.
+To select the most suitable architecture for real‑time deployment on underwater camera systems, a multi‑objective evaluation framework was established using LPS, GESI, PEI, and Pareto Frontier analysis. **Figure 5** presents a radar chart comparing all YOLO variants with different modules.
 
 <p align="center">
-  <img src="figures/Radar_Plot.png?t=20260430" alt="Radar chart of multi-objective performance" width="600">
+  <img src="figures/Radar_Chart.png" alt="Radar chart of multi-objective performance" width="600">
   <br>
-  <em>Figure 6. Radial performance comparison of YOLO architectures (M0–M9). The GFLOPs axis is inverted such that peripheral placement reflects lower computational demand and enhanced efficiency.</em>
+  <em>Figure 5. Radar chart comparing YOLO variants with different modules in layer 10. The GFLOPs axis is inverted; peripheral placement reflects lower computational demand and higher efficiency.</em>
 </p>
+
+**Table 2** presents the multi‑objective ranking and Pareto efficiency results.
+
+| Model | Custom Score | Overfitting | Pareto Frontier |
+|-------|--------------|-------------|-----------------|
+| YOLO26n + C2ICARE | 0.6189 | -0.1584 | Yes |
+| YOLO26n + CBAM | 0.6058 | -0.1698 | Yes |
+| YOLO26n + ImCA | 0.5956 | -0.1912 | Yes |
+| YOLO26n + CoordAtt | 0.5956 | -0.2088 | Yes |
+| YOLO26n + FasterBlock | 0.3211 | -0.1655 | No |
 
 ### XAI Analysis: EigenCAM Visualisation
 
