@@ -142,13 +142,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 This work acknowledges the foundational contributions of the research community. We thank Zhou et al. for their CARE Transformer [zhou2025care], which inspired our C2ICARE module. We also thank Allken et al. for the Deep Vision Fish Dataset and their deep learning methods for fish identification. If you find this work useful, please cite:
 
 ```bash
-@article{SilvaAlvarado2026C2ICARE,
-  title={C2ICARE‑Optimized YOLO for Real‑Time Marine Species Detection via Multi‑Scale Convolutional Design},
-  author={Silva-Alvarado, Vinie Lee and Ahmad, Ali and Sendra, Sandra and Lloret, Jaime},
-  journal={[Journal Name]},
-  year={2026},
-  note={Under review}
-}
 
 @inproceedings{zhou2025care,
   title={CARE Transformer: Mobile-Friendly Linear Visual Transformer via Decoupled Dual Interaction},
