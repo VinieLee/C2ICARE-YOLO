@@ -1,11 +1,11 @@
-# C2ICARE: Convolution to Interactive Capture and Re‑calibration Enhancement for Real‑Time Object Detection
+# Development of a novel Convolution to Interactive Capture and Re-calibration Enhancement Module (C2ICARE) for Real-Time Object Detection 
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Ultralytics](https://img.shields.io/badge/Ultralytics-YOLO26n-00BFFF.svg)](https://github.com/ultralytics/ultralytics)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
 
-**Official implementation of C2ICARE (Convolution to Interactive Capture and Re‑calibration Enhancement), a lightweight multi‑scale attention module that preserves spatial information through a memory‑feature split while capturing multi‑scale patterns via depthwise convolutions (3×3 and 7×7). Integrated into YOLO26n, C2ICARE achieves mAP@0.5:0.95 of 0.7033 ± 0.0207, outperforming CoordAtt (+3.8%), CBAM (+0.4%), FasterBlock (+1.7%), and ImCA (+0.6%) on an underwater fish dataset.**
+**Official presentation of C2ICARE (Convolution to Interactive Capture and Re‑calibration Enhancement), a lightweight multi‑scale attention module that preserves spatial information through a memory‑feature split while capturing multi‑scale patterns via depthwise convolutions (3×3 and 7×7). Integrated into YOLO26n, C2ICARE achieves mAP@0.5:0.95 of 0.7033 ± 0.0207, outperforming CoordAtt (+3.8%), CBAM (+0.4%), FasterBlock (+1.7%), and ImCA (+0.6%) on an underwater fish dataset.**
 
 ---
 
