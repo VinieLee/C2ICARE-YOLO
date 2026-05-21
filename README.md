@@ -1,4 +1,4 @@
-# Development of a novel Convolution to Interactive Capture and Re-calibration Enhancement Module (C2ICARE) for Real-Time Object Detection 
+# Development of a novel Convolution to Interactive Capture and Re-calibration Enhancement Module for Real-Time Object Detection 
 
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
